@@ -22,5 +22,6 @@ defmodule TheGame.Router do
     pipe_through :api
     resources "/characters", CharacterController
     resources "/classes", ClassController
+    resources "/users", UserController
   end
 end
