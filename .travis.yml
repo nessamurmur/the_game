@@ -5,4 +5,4 @@ addons:
   postgresql: "9.3"
 before_script:
   - cp config/travis.exs config/test.exs
-  - mix do deps.get, deps.compile, ecto.create, ecto.migrate
+  - MIX_ENV=test mix do deps.get, deps.compile, ecto.create, ecto.migrate
