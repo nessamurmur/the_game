@@ -1,5 +1,7 @@
 # TheGame
 
+[![Build Status](https://travis-ci.org/niftyn8/the_game.svg)](https://travis-ci.org/niftyn8/the_game)
+
 To start your new Phoenix application:
 
 1. Install dependencies with `mix deps.get`
