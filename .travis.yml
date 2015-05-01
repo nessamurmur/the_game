@@ -1,3 +1,8 @@
 language: elixir
 otp_release:
   - 17.4
+addons:
+  postgresql: "9.3"
+before_script:
+  - cp config/travis.exs config/test.exs
+  - mix do deps.get, deps.compile, ecto.create, ecto.migrate
