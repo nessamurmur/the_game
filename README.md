@@ -68,20 +68,72 @@ id :: Integer
 
 ### Classes
 
-GET     /api/classes
-GET     /api/classes/:id
-POST    /api/classes
-PATCH   /api/classes/:id
-PUT     /api/classes/:id
-DELETE  /api/classes/:id
+#### Get a list of available classes
+
+`GET     /api/classes`
+
+**Example**:
+`curl http://thegame.com/api/classes`
+
+#### Get a particular class
+
+`GET     /api/classes/:id`
+
+#### Create a new class
+
+`POST    /api/classes`
+
+**Params**:
+*Required*:
+* name :: String
+
+#### Update a class
+
+`PATCH   /api/classes/:id`
+`PUT     /api/classes/:id`
+
+**Params**:
+*Required*:
+* name :: String
+
+#### Delete a class
+
+`DELETE  /api/classes/:id`
 
 ### Users
 
-GET     /api/users
-GET     /api/users/:id/edit
-GET     /api/users/new
-GET     /api/users/:id
-POST    /api/users
-PATCH   /api/users/:id
-PUT     /api/users/:id
-DELETE  /api/users/:id
+#### Get all users
+
+`GET     /api/users`
+
+#### Get a particular user
+
+`GET     /api/users/:id`
+
+### Create a user
+
+`POST    /api/users`
+
+**Params**:
+*Required*:
+* name :: String
+* username :: String
+* key :: String - a unique device identifier
+* lat :: Ingteger
+* long :: Integer
+
+#### Update a user
+
+`PATCH   /api/users/:id`
+`PUT     /api/users/:id`
+
+**Params**:
+*Optional*:
+* name :: String
+* username :: String
+* lat :: Ingteger
+* long :: Integer
+
+#### Delete a user
+
+`DELETE  /api/users/:id`
