@@ -8,5 +8,6 @@ before_script:
 - MIX_ENV=test mix do deps.get, deps.compile, ecto.create, ecto.migrate
 deploy:
   provider: heroku
+  app: location-game
   api_key:
     secure: SrlGZ90AVszYkjlHRGrAOHT6McycgATX5ilbMdXmnNmyWq3ZqX6msX/QVB/T8dQL+sqpxv5cAB5OtxAH1noeA1FVdmRnbA+QGYQ3c59896bN3Zcb9iOWq5PRYVX5GSXj4GoqWU19U4SEjNtEpo1wReaWIvZb64ZHpApVsM1y8vA=
