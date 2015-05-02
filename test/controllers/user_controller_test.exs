@@ -16,8 +16,8 @@ defmodule TheGame.UserControllerTest do
   end
 
   test "GET /users/:id", %{conn: conn} do
-    user = Repo.insert %User{}
-    conn = get conn, user_path(conn, :show, user)
+    user = Repo.insert %User{key: "some key"}
+    conn = get conn, user_path(conn, :show, user.key)
     assert json_response(conn, 200)["data"] == %{
       "id" => user.id
     }

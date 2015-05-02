@@ -25,7 +25,7 @@ defmodule TheGame.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get(User, id)
+    user = Repo.one(from(u in User, where: u.key == ^id))
     render conn, "show.json", user: user
   end
 
