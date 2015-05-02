@@ -7,6 +7,7 @@ before_script:
   - cp config/travis.exs config/test.exs
   - cp .gitignore.travis .gitignore
   - npm install -g brunch
+  - npm install
   - brunch build --production
   - MIX_ENV=test mix do deps.get, deps.compile, ecto.create, ecto.migrate
 deploy:
