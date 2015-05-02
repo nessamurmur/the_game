@@ -48,4 +48,9 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+config :the_game, TheGame.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  host: System.get_env("POSTGRES_HOST"),
+  database: System.get_env("POSTGRES_DATABASE")
