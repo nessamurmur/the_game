@@ -21,3 +21,5 @@ deploy:
   strategy: git-ssh
   api_key:
     secure: SrlGZ90AVszYkjlHRGrAOHT6McycgATX5ilbMdXmnNmyWq3ZqX6msX/QVB/T8dQL+sqpxv5cAB5OtxAH1noeA1FVdmRnbA+QGYQ3c59896bN3Zcb9iOWq5PRYVX5GSXj4GoqWU19U4SEjNtEpo1wReaWIvZb64ZHpApVsM1y8vA=
+after_deploy:
+  - heroku run "mix ecto.migrate" -a location-game
