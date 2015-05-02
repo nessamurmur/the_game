@@ -11,8 +11,8 @@ defmodule TheGame.User do
     timestamps
   end
 
-  @required_fields ~w(name username key lat long)
-  @optional_fields ~w()
+  @required_fields ~w(name key)
+  @optional_fields ~w(username lat long)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
