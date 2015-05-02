@@ -22,5 +22,8 @@ defmodule TheGame.Character do
   def changeset(model, params \\ nil) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_length(:name, min: 1)
+    |> validate_number(:user_id, greater_than: 0)
+    |> validate_number(:class_id, greater_than: 0)
   end
 end

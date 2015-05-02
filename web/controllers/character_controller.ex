@@ -2,17 +2,21 @@ defmodule TheGame.CharacterController do
   use TheGame.Web, :controller
 
   alias TheGame.Character
-
+  alias TheGame.User
+  
   plug :scrub_params, "character" when action in [:create, :update]
   plug :action
 
-  def index(conn, _params) do
-    characters = Repo.all(Character)
+  def index(conn, %{"user_id" => user_key}) do
+    user = Repo.one(from u in User, where: u.key == ^user_key)
+    characters = Repo.all(from c in Character, where: c.user_id == ^user.id)
     render(conn, "index.json", characters: characters)
   end
 
-  def create(conn, %{"character" => character_params}) do
-    changeset = Character.changeset(%Character{}, character_params)
+  def create(conn, %{"user_id" => user_key, "character" => character_params}) do
+    user = Repo.one(from u in User, where: u.key == ^user_key)
+    changeset = Character.changeset(%Character{},
+                                    Map.merge(character_params, %{"user_id" => user.id}))
 
     if changeset.valid? do
       character = Repo.insert(changeset)
@@ -24,13 +28,15 @@ defmodule TheGame.CharacterController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    character = Repo.get(Character, id)
+  def show(conn, %{"user_id" => user_key, "id" => id}) do
+    user = Repo.one(from u in User, where: u.key == ^user_key)
+    character = Repo.one(from c in Character, where: c.user_id == ^user.id, where: c.id == ^id)
     render conn, "show.json", character: character
   end
 
-  def update(conn, %{"id" => id, "character" => character_params}) do
-    character = Repo.get(Character, id)
+  def update(conn, %{"user_id" => user_key, "id" => id, "character" => character_params}) do
+    user = Repo.one(from u in User, where: u.key == ^user_key)
+    character = Repo.one(from c in Character, where: c.user_id == ^user.id, where: c.id == ^id)
     changeset = Character.changeset(character, character_params)
 
     if changeset.valid? do
@@ -43,8 +49,9 @@ defmodule TheGame.CharacterController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    character = Repo.get(Character, id)
+  def delete(conn, %{"user_id" => user_key, "id" => id}) do
+    user = Repo.one(from u in User, where: u.key == ^user_key)
+    character = Repo.one(from c in Character, where: c.user_id == ^user.id, where: c.id == ^id)
 
     character = Repo.delete(character)
     render(conn, "show.json", character: character)

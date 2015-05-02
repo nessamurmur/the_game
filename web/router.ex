@@ -20,8 +20,9 @@ defmodule TheGame.Router do
 
   scope "/api", TheGame do
     pipe_through :api
-    resources "/characters", CharacterController
     resources "/classes", ClassController
-    resources "/users", UserController
+    resources "/users", UserController do
+      resources "/characters", CharacterController
+    end
   end
 end
