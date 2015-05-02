@@ -10,6 +10,9 @@ before_script:
   - npm install
   - brunch build --production
   - mix phoenix.digest
+  - git config --global user.email "natescott.west@gmail.com"
+  - git config --global user.name "Nate West"
+  - git add priv && git commit -m "Heroku assets"
   - MIX_ENV=test mix do deps.get, deps.compile, ecto.create, ecto.migrate
 deploy:
   provider: heroku
