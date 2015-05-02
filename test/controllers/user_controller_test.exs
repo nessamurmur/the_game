@@ -19,13 +19,16 @@ defmodule TheGame.UserControllerTest do
     user = Repo.insert %User{key: "some key"}
     conn = get conn, user_path(conn, :show, user.key)
     assert json_response(conn, 200)["data"] == %{
-      "id" => user.id
+      "key" => user.key,
+      "name" => user.name,
+      "lat" => user.lat,
+      "long" => user.long
     }
   end
 
   test "POST /users with valid data", %{conn: conn} do
     conn = post conn, user_path(conn, :create), @valid_params
-    assert json_response(conn, 200)["data"]["id"]
+    assert json_response(conn, 200)["data"]["key"]
   end
 
   test "POST /users with invalid data", %{conn: conn} do
@@ -36,7 +39,7 @@ defmodule TheGame.UserControllerTest do
   test "PUT /users/:id with valid data", %{conn: conn} do
     user = Repo.insert %User{}
     conn = put conn, user_path(conn, :update, user), @valid_params
-    assert json_response(conn, 200)["data"]["id"]
+    assert json_response(conn, 200)["data"]["key"]
   end
 
   test "PUT /users/:id with invalid data", %{conn: conn} do
@@ -48,7 +51,7 @@ defmodule TheGame.UserControllerTest do
   test "DELETE /users/:id", %{conn: conn} do
     user = Repo.insert %User{}
     conn = delete conn, user_path(conn, :delete, user)
-    assert json_response(conn, 200)["data"]["id"]
+    assert json_response(conn, 200)
     refute Repo.get(User, user.id)
   end
 end
