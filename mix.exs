@@ -29,10 +29,10 @@ defmodule TheGame.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, github: "phoenixframework/phoenix", override: true},
+    [{:phoenix, "~> 0.12.0"},
      {:phoenix_ecto, "~> 0.3"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_live_reload, "~> 0.3"},
+     {:phoenix_live_reload, "~> 0.3.2"},
      {:cowboy, "~> 1.0"}]
   end
 end
