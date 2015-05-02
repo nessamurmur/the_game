@@ -9,6 +9,7 @@ before_script:
   - npm install -g brunch
   - npm install
   - brunch build --production
+  - mix phoenix.digest
   - MIX_ENV=test mix do deps.get, deps.compile, ecto.create, ecto.migrate
 deploy:
   provider: heroku
