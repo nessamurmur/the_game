@@ -52,5 +52,5 @@ config :the_game, TheGame.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: System.get_env("POSTGRES_USER"),
   password: System.get_env("POSTGRES_PASSWORD"),
-  host: System.get_env("POSTGRES_HOST"),
+  hostname: System.get_env("POSTGRES_HOST"),
   database: System.get_env("POSTGRES_DATABASE")
