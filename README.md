@@ -17,30 +17,34 @@ Now you can visit `localhost:4000` from your browser.
 
 #### List all characters
 
-`GET     /api/characters`
+`GET     /api/users/:user_id/characters`
 
-Returns a list of characters
+Returns a list of characters where user_id == a user.key (unique device
+identifier)
 
 **Example**:
 
-`curl http://thegame.com/characters`
+`curl http://thegame.com/users/some_key/characters`
 
 #### Get a character
 
-`GET     /api/characters/:id`
+`GET     /api/users/:user_id/characters/:id`
 
-Returns a single character who's id == :id
+Returns a single character who's id == :id and where user_id == a user.key
+(unique device identifier)
 
 **Query Params**:
 id :: Integer
 
 **Example**:
 
-`curl http://thegame.com/characters/1`
+`curl http://thegame.com/users/some_key/characters/1`
 
 #### Create a character
 
-`POST    /api/characters`
+`POST    /api/users/:user_id/characters`
+
+where user_id == a user.key
 
 **Params**:
 *Required*:
@@ -51,8 +55,10 @@ id :: Integer
 
 #### Update a character
 
-`PATCH   /api/characters/:id`
-`PUT     /api/characters/:id`
+`PATCH   /api/users/:user_id/characters/:id`
+`PUT     /api/users/:user_id/characters/:id`
+
+where user_id == a user.key
 
 **Params**:
 *Optional*:
@@ -63,7 +69,9 @@ id :: Integer
 
 #### Destroy a character
 
-`DELETE  /api/characters/:id`
+where user_id == a user.key
+
+`DELETE  /api/users/:user_id/characters/:id`
 
 
 ### Classes
