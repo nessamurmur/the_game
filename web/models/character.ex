@@ -10,8 +10,8 @@ defmodule TheGame.Character do
     timestamps
   end
 
-  @required_fields ~w(name level class_id user_id)
-  @optional_fields ~w()
+  @required_fields ~w(name class_id user_id)
+  @optional_fields ~w(level)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
