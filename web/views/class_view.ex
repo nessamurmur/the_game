@@ -10,6 +10,6 @@ defmodule TheGame.ClassView do
   end
 
   def render("class.json", %{class: class}) do
-    %{id: class.id}
+    %{id: class.id, name: class.name}
   end
 end

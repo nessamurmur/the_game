@@ -1,6 +1,9 @@
 defmodule TheGame.Character do
   use TheGame.Web, :model
 
+  alias TheGame.Repo
+  alias TheGame.Class
+
   schema "characters" do
     field :name, :string
     field :level, :integer
@@ -25,5 +28,14 @@ defmodule TheGame.Character do
     |> validate_length(:name, min: 1)
     |> validate_number(:user_id, greater_than: 0)
     |> validate_number(:class_id, greater_than: 0)
+  end
+
+  def class_for(character) do
+    class = Repo.one(from c in Class, where: c.id == ^character.class_id)
+    if class do
+      class.name
+    else
+      ""
+    end
   end
 end

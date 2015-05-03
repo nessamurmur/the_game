@@ -22,7 +22,9 @@ defmodule TheGame.CharacterControllerTest do
     character = Repo.insert %Character{name: "some name", class_id: 1, user_id: user.id}
     conn = get conn, user_character_path(conn, :show, user.key, character)
     assert json_response(conn, 200)["data"] == %{
-      "id" => character.id
+      "id" => character.id,
+      "name" => character.name,
+      "class" => Character.class_for(character)
     }
   end
 

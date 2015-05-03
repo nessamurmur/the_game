@@ -19,7 +19,8 @@ defmodule TheGame.ClassControllerTest do
     class = Repo.insert %Class{}
     conn = get conn, class_path(conn, :show, class)
     assert json_response(conn, 200)["data"] == %{
-      "id" => class.id
+      "id" => class.id,
+      "name" => class.name
     }
   end
 

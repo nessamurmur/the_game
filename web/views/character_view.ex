@@ -1,6 +1,8 @@
 defmodule TheGame.CharacterView do
   use TheGame.Web, :view
 
+  alias TheGame.Character
+
   def render("index.json", %{characters: characters}) do
     %{data: render_many(characters, "character.json")}
   end
@@ -10,6 +12,6 @@ defmodule TheGame.CharacterView do
   end
 
   def render("character.json", %{character: character}) do
-    %{id: character.id}
+    %{id: character.id, name: character.name, class: Character.class_for(character)}
   end
 end
