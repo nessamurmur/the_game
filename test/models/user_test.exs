@@ -15,4 +15,11 @@ defmodule TheGame.UserTest do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "validates uniqueness of username" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    Repo.insert(changeset)
+    changeset = User.changeset(%User{}, @valid_attrs)
+    refute changeset.valid?
+  end
 end

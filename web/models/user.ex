@@ -1,6 +1,8 @@
 defmodule TheGame.User do
   use TheGame.Web, :model
 
+  alias TheGame.Repo
+
   schema "users" do
     field :name, :string
     field :username, :string
@@ -23,5 +25,6 @@ defmodule TheGame.User do
   def changeset(model, params \\ nil) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_unique(:key, on: Repo)
   end
 end
